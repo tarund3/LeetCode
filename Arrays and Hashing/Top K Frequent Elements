@@ -1,0 +1,14 @@
+class Solution:
+    def topKFrequent(self, nums, k):
+        my_dict = {}
+        for n in nums:
+            my_dict[n] = my_dict.get(n, 0) + 1
+
+        returned_list = []
+        for i in range(k):
+            max_key = max(my_dict, key=my_dict.get)
+            returned_list.append(max_key)
+            del my_dict[max_key]
+
+        return returned_list         
+                
