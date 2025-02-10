@@ -1,0 +1,23 @@
+class Solution:
+    def isValidSudoku(self, board: List[List[str]]) -> bool:
+        row_dict = defaultdict(list)
+        col_dict = defaultdict(list)
+        box_dict = defaultdict(list)
+
+        for r in range(len(board)):
+            for c in range(len(board[0])):
+                if board[r][c] != '.':
+                    if board[r][c] in row_dict[r]:
+                        return False
+                    row_dict[r].append(board[r][c])
+                if board[c][r] != '.':
+                    if board[c][r] in col_dict[r]:
+                        return False
+                    col_dict[r].append(board[c][r])
+                row = r // 3
+                col = c // 3
+                if board[r][c] != '.':
+                    if board[r][c] in box_dict[row, col]:
+                        return False
+                    box_dict[row, col].append(board[r][c])
+        return True
